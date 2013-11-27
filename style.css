@@ -47,9 +47,11 @@ h2{
 }
 
 #tank-list{
-	margin: 20px;
+	margin: auto;
+	width: 55%;
 }
 
 .top-buttons{
-	margin: 20px;
+	margin:auto;
+	width:55%;
 }
