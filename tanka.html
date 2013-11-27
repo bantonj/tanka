@@ -1,0 +1,111 @@
+<html lang="en">
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="./src/list.js"></script>
+<script src="jquery.xdomainajax.js"></script>
+</head>
+<body>
+<script>
+
+tankStore = {};
+
+//START TankList object
+function TankList(tankdata, div_id){
+
+   this.tankdata = tankdata;
+   this.div_id = div_id;
+   this.sortKey = 'win_percentage';
+}
+
+// Add methods like this. 
+TankList.prototype.build = function(){
+	this.clear();
+    for (var i=0;i<this.tankdata.length;i++){ 
+		$(this.div_id).append('<li><h3>'+(i+1)+'. '+this.tankdata[i].name+'</h3><p>'+
+        'Win %: ' + this.tankdata[i].win_percentage+
+        ', Wins : ' + this.tankdata[i].won+
+        ', Losses : ' + this.tankdata[i].lost+
+		', Last 10 %: ' + this.tankdata[i].last10+
+        '</li>');
+	}
+}
+
+TankList.prototype.clear = function(){
+	$(this.div_id).empty()
+
+}
+
+TankList.prototype.compare = function (a,b) {
+  console.log(tankStore.sortKey);
+  if (a[tankStore.sortKey] < b[tankStore.sortKey]){
+     return -1;
+  }
+  if (a[tankStore.sortKey] > b[tankStore.sortKey]){
+    return 1;
+  }
+  return 0;
+}
+
+TankList.prototype.sort = function(sortBy, desc){
+    if (desc == null) desc = true;
+	this.sortKey = sortBy;
+    tankStore.sortKey = sortBy;
+	this.tankdata.sort(this.compare);
+	if (desc){
+		this.tankdata.reverse();
+	}
+}
+
+
+//END TankList object
+
+tankStore.sortwinper = function(){
+	tankStore.tanka.sort('win_percentage', false);
+	tankStore.tanka.clear();
+	tankStore.tanka.build();
+}
+
+tankStore.sortwon = function(){
+	tankStore.tanka.sort('won', false);
+	tankStore.tanka.clear();
+	tankStore.tanka.build();
+}
+
+tankStore.sortlost = function(){
+	tankStore.tanka.sort('lost');
+	tankStore.tanka.clear();
+	tankStore.tanka.build();
+}
+
+tankStore.sortlast10 = function(){
+	tankStore.tanka.sort('last10', false);
+	tankStore.tanka.clear();
+	tankStore.tanka.build();
+}
+
+$(document).ready(function () {
+$.ajax( {url: "http://api.openkeyval.org/rok-706ebb3775a346e499b18c1a8293f109f3710983", 
+		dataType: "jsonp",
+		success: function( data ) {
+	var json_stats = $.parseJSON(data)
+ 	tankStore.tanka = new TankList(json_stats, "#tank-list ul");
+	tankStore.tanka.sort('win_percentage', false);
+    console.log('just sorted');
+	tankStore.tanka.build();
+	
+}})
+})
+</script>
+<h2>NBA Loser Rankings</h2>
+<div class="top-buttons">
+<button onClick='tankStore.sortwinper()'>Sort by Win %</button>
+<button onClick='tankStore.sortwon()'>Sort by Wins</button>
+<button onClick='tankStore.sortlost()'>Sort by Losses</button>
+<button onClick='tankStore.sortlast10()'>Sort by Last 10</button>
+</div>
+<div id="tank-list">
+    <ul class="list"></ul>
+</div>
+</body>
+</html>
