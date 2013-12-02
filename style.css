@@ -1,10 +1,23 @@
-ul {
+body {
+  padding-top: 50px;
+}
+
+.team-name {
+	font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+}
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.ranklist ul{
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
  
-li {
+.ranklist li {
   font: 200 15px/1.5 Helvetica, Verdana, sans-serif;
   border-bottom: 1px solid #ccc;
 }
@@ -13,7 +26,7 @@ li:last-child {
   border: none;
 }
  
-li a {
+.ranklist li a {
   text-decoration: none;
   color: #000;
   display: block;
@@ -30,13 +43,14 @@ li:hover {
   background: #f6f6f6;
 }
 
-button {
+.btn-sort {
 	font: 200 15px/1.5 Helvetica, Verdana, sans-serif;
-    border-radius: 15px;
-    border: 1px solid #000;
+   # border-radius: 15px;
+   # border: 1px solid #000;
+   width: 120px;
 }
 
-button:hover {
+.btn-sort:hover {
 	background-color: c4c4c4;
 }
 
@@ -47,9 +61,40 @@ h2{
 }
 
 #tank-list{
-	margin: 20px;
+	#margin: auto;
+	#width: 55%;
 }
 
 .top-buttons{
-	margin: 20px;
+	margin:auto;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	width:55%;
+}
+
+/*Chages the navbar text color*/
+.navbar-brand{
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	color: #2E2E2E !important;
+}
+
+.navbar-inverse .navbar-inner {
+  background-color: #E27403; /* it's flat*/
+ background-image: none;
+}
+
+.navbar-inverse{
+	background-color: rgb(177, 189, 164);
+	border-color: rgb(8, 8, 8);
+	#background-image: linear-gradient(to bottom, rgb(47, 67, 138) 0px, rgb(35, 35, 35) 100%);
+	#background-repeat: repeat-x;
+}
+
+.table-nonfluid{
+    width: 50px;
+	font: 200 14px/1.5 Helvetica, Verdana, sans-serif;
+}
+
+.sort-buttons{
+	padding: 10px;
 }

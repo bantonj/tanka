@@ -1,11 +1,43 @@
 <html lang="en">
 <head>
-<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+<title>NBA Loser Rankings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="./src/list.js"></script>
 <script src="jquery.xdomainajax.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css"> -->
+
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
 </head>
 <body>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">NBA Loser Rankings</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <!-- <ul class="nav navbar-nav"> -->
+            <!-- <li class="active"><a href="#">Home</a></li> -->
+            <!-- <li><a href="#about">About</a></li> -->
+            <!-- <li><a href="#contact">Contact</a></li> -->
+          <!-- </ul> -->
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
 <script>
 
 tankStore = {};
@@ -22,7 +54,7 @@ function TankList(tankdata, div_id){
 TankList.prototype.build = function(){
 	this.clear();
     for (var i=0;i<this.tankdata.length;i++){ 
-		$(this.div_id).append('<li><h3>'+(i+1)+'. '+this.tankdata[i].name+'</h3><p>'+
+		$(this.div_id).append('<li><div class="team-name">'+(i+1)+'. '+this.tankdata[i].name+'</div><p>'+
         'Win %: ' + this.tankdata[i].win_percentage+
         ', Wins : ' + this.tankdata[i].won+
         ', Losses : ' + this.tankdata[i].lost+
@@ -97,15 +129,148 @@ $.ajax( {url: "http://api.openkeyval.org/rok-706ebb3775a346e499b18c1a8293f109f37
 }})
 })
 </script>
-<h2>NBA Loser Rankings</h2>
-<div class="top-buttons">
-<button onClick='tankStore.sortwinper()'>Sort by Win %</button>
-<button onClick='tankStore.sortwon()'>Sort by Wins</button>
-<button onClick='tankStore.sortlost()'>Sort by Losses</button>
-<button onClick='tankStore.sortlast10()'>Sort by Last 10</button>
+ <div class="container">
+
+        <!-- <h2>NBA Loser Rankings</h2> -->
+<div class="row">
+<div class="col-md-9">
+	<div class='sort-buttons'>
+		<button class="btn btn-sort" onClick='tankStore.sortwinper()'>Sort by Win %</button>
+		<button class="btn btn-sort" onClick='tankStore.sortwon()'>Sort by Wins</button>
+		<button class="btn btn-sort" onClick='tankStore.sortlost()'>Sort by Losses</button>
+		<button class="btn btn-sort" onClick='tankStore.sortlast10()'>Sort by Last 10</button>
+	</div>
 </div>
-<div id="tank-list">
-    <ul class="list"></ul>
+<div class="col-md-1">
+		
+</div>
+</div>
+<div class="row">
+	
+	<div class="col-md-6">
+		<div class="ranklist" id="tank-list">
+			<ul class="list"></ul>
+		</div>
+	</div>
+	<div class="col-md-3">
+	</div>
+	<div class="col-md-2">
+		<table class="table table-nonfluid">
+		<tr>
+			<td colspan="3">NBA Odds</td>
+			<td></td>
+			<td></td>
+		<tr>
+			<td></td>
+			<td width="100">1st</td>
+			<td width="100">2nd</td>
+			<td width="100">3rd</td>
+			<td width="100">Own</td>
+		</tr>
+		<tr>
+			<td>1.</td>
+			<td>25%</td>
+			<td>21.5%</td>
+			<td>17.8%</td>
+			<td>25%</td>
+		</tr>
+		<tr>
+			<td>2.</td>
+			<td>19.9%</td>
+			<td>18.8%</td>
+			<td>17.1%</td>
+			<td>18.8%</td>
+		</tr>
+		<tr>
+			<td>3.</td>
+			<td>15.6%</td>
+			<td>15.7%</td>
+			<td>15.6%</td>
+			<td>15.6%</td>
+		</tr>
+		<tr>
+			<td>4.</td>
+			<td>11.9%</td>
+			<td>12.6%</td>
+			<td>13.3%</td>
+			<td>9.9%</td>
+		</tr>
+			<tr>
+			<td>5.</td>
+			<td>8.8%</td>
+			<td>9.7%</td>
+			<td>10.7%</td>
+			<td>26.1%</td>
+		</tr>
+		<tr>
+			<td>6.</td>
+			<td>6.3%</td>
+			<td>7.1%</td>
+			<td>8.1%</td>
+			<td>43.9%</td>
+		</tr>
+		<tr>
+			<td>7.</td>
+			<td>4.3%</td>
+			<td>4.9%</td>
+			<td>5.8%</td>
+			<td>59.9%</td>
+		</tr>
+		<tr>
+			<td>8.</td>
+			<td>2.8%</td>
+			<td>3.3%</td>
+			<td>3.9%</td>
+			<td>72.4%</td>
+		</tr>
+		<tr>
+			<td>9.</td>
+			<td>1.7%</td>
+			<td>2%</td>
+			<td>2.4%</td>
+			<td>81.3%</td>
+		</tr>
+		<tr>
+			<td>10.</td>
+			<td>1.1%</td>
+			<td>1.3%</td>
+			<td>1.6%</td>
+			<td>87%</td>
+		</tr>
+		<tr>
+			<td>11.</td>
+			<td>0.8%</td>
+			<td>0.9%</td>
+			<td>1.2%</td>
+			<td>90.7%</td>
+		</tr>
+		<tr>
+			<td>12.</td>
+			<td>0.7%</td>
+			<td>0.8%</td>
+			<td>1%</td>
+			<td>93.5%</td>
+		</tr>
+		<tr>
+			<td>13.</td>
+			<td>0.6%</td>
+			<td>0.7%</td>
+			<td>0.9%</td>
+			<td>96%</td>
+		</tr>
+		<tr>
+			<td>14.</td>
+			<td>0.5%</td>
+			<td>0.6%</td>
+			<td>0.7%</td>
+			<td>98.2%</td>
+		</tr>		
+		<tr>
+			<td colspan="4">Source: <a href="http://en.wikipedia.org/w/index.php?title=NBA_draft_lottery&oldid=569512339">wikipedia.org</a></td>
+		</tr>
+		</table>
+	</div>
+</div>
 </div>
 </body>
 </html>
